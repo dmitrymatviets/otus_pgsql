@@ -53,28 +53,31 @@ postgres=# insert into test values('1');
 - подключится из контейнера с клиентом к контейнеру с сервером и сделать таблицу с парой строк
 > Сделал файлы client.sh и docker-compose.yml (выложены рядом в текущей папке).
 > Запустил через docker-compose up
+
 > pg-server_1  | 2020-11-21 12:53:14.193 UTC [1] LOG:  starting PostgreSQL 13.1 (Debian 13.1-1.pgdg100+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 8.3.0-6) 8.3.0, 64-bit
->  pg-server_1  | 2020-11-21 12:53:14.193 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
->  pg-server_1  | 2020-11-21 12:53:14.193 UTC [1] LOG:  listening on IPv6 address "::", port 5432
->  pg-server_1  | 2020-11-21 12:53:14.263 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
->  pg-server_1  | 2020-11-21 12:53:14.323 UTC [26] LOG:  database system was shut down at 2020-11-21 12:52:12 UTC
->  pg-server_1  | 2020-11-21 12:53:14.343 UTC [1] LOG:  database system is ready to accept connections
->  pg-client_1  | ok! Postgres is available!
->  pg-client_1  | CREATE TABLE
->  pg-client_1  |        List of relations
->  pg-client_1  |  Schema | Name | Type  | Owner
->  pg-client_1  | --------+------+-------+-------
->  pg-client_1  |  public | test | table | admin
->  pg-client_1  | (1 row)
->  pg-client_1  |
->  pg-client_1  | INSERT 0 1
->  pg-client_1  |    c1
->  pg-client_1  | --------
->  pg-client_1  |  hello!
->  pg-client_1  | (1 row)
->  pg-client_1  |
+> pg-server_1  | 2020-11-21 12:53:14.193 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+> pg-server_1  | 2020-11-21 12:53:14.193 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+> pg-server_1  | 2020-11-21 12:53:14.263 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+> pg-server_1  | 2020-11-21 12:53:14.323 UTC [26] LOG:  database system was shut down at 2020-11-21 12:52:12 UTC
+> pg-server_1  | 2020-11-21 12:53:14.343 UTC [1] LOG:  database system is ready to accept connections
+
+> pg-client_1  | ok! Postgres is available!
+> pg-client_1  | CREATE TABLE
+> pg-client_1  |        List of relations
+> pg-client_1  |  Schema | Name | Type  | Owner
+> pg-client_1  | --------+------+-------+-------
+> pg-client_1  |  public | test | table | admin
+> pg-client_1  | (1 row)
+> pg-client_1  |
+> pg-client_1  | INSERT 0 1
+> pg-client_1  |    c1
+> pg-client_1  | --------
+> pg-client_1  |  hello!
+> pg-client_1  | (1 row)
+> pg-client_1  |
 - подключится к контейнеру с сервером с ноутбука
 > Подключиться с ноутбука удалось, настроив правило брандмауэра gcp, разрешив внешние подключения на порт 5432 для диапазона адресов 0.0.0.0/0
+
 > DBMS: PostgreSQL (ver. 13.1 (Debian 13.1-1.pgdg100+1))
 > Case sensitivity: plain=lower, delimited=exact
 > Driver: PostgreSQL JDBC Driver (ver. 42.2.5, JDBC4.2)

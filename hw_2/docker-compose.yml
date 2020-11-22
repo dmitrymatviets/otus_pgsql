@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  pg-server:
+    image: postgres:13.1
+    environment:
+      - PGDEBUG=true
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234512345
+    volumes:
+      - /var/lib/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  pg-client:
+    image: postgres:13.1
+    command: [ "bash", "/usr/bin/pg_client.sh" ]
+    volumes:
+      - ./client.sh:/usr/bin/pg_client.sh
+    environment:
+      - PGPASSWORD=1234512345
+    depends_on:
+      - pg-server
